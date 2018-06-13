@@ -4,14 +4,8 @@ import android.app.Application
 import dagger.BindsInstance
 import dagger.Component
 import dagger.android.support.AndroidSupportInjectionModule
-import gusev.max.spotsearch.App
-import gusev.max.spotsearch.injection.module.CacheModule
-import gusev.max.spotsearch.injection.module.DomainModule
-import gusev.max.spotsearch.injection.module.UiModule
-import gusev.max.spotsearch.injection.module.ApplicationModule
-import gusev.max.spotsearch.injection.module.DataModule
-import gusev.max.spotsearch.injection.module.PresentationModule
-import gusev.max.spotsearch.injection.module.RemoteModule
+import gusev.max.spotsearch.SpotSearchApp
+import gusev.max.spotsearch.injection.module.*
 import javax.inject.Singleton
 
 @Singleton
@@ -37,6 +31,6 @@ interface ApplicationComponent {
         fun build(): ApplicationComponent
     }
 
-    fun inject(app: App)
+    fun inject(app: SpotSearchApp)
 
 }

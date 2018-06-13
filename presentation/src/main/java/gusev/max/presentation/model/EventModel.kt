@@ -14,4 +14,4 @@ data class EventModel(
     val latLng: LatLngModel,
     val likesCount: Int,
     val dislikesCount: Int
-) : BasePresentationViewModel
+) : BaseModel

@@ -9,7 +9,7 @@ import android.support.v4.app.FragmentManager
 import dagger.android.AndroidInjection
 import dagger.android.support.AndroidSupportInjection
 import dagger.android.support.HasSupportFragmentInjector
-import gusev.max.spotsearch.App
+import gusev.max.spotsearch.SpotSearchApp
 
 /**
  * Helper class to automatically inject fragments if they implement {@link Injectable}.
@@ -18,7 +18,7 @@ class AppInjector {
 
     companion object {
 
-        fun init(app: App) {
+        fun init(app: SpotSearchApp) {
 
             DaggerApplicationComponent
                 .builder()
@@ -27,6 +27,7 @@ class AppInjector {
                 .inject(app)
 
             app.registerActivityLifecycleCallbacks(object : Application.ActivityLifecycleCallbacks {
+
                 override fun onActivityCreated(activity: Activity, savedInstanceState: Bundle?) {
                     handleActivity(activity)
                 }

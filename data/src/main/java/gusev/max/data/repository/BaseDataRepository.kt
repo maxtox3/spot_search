@@ -48,7 +48,7 @@ abstract class BaseDataRepository<
                 })
             }
             .flatMap {
-                saveModels(it).toSingle { it }.toFlowable()
+                cacheModels(it).toSingle { it }.toFlowable()
             }
     }
 

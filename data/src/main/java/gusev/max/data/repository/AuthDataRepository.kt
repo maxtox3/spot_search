@@ -28,6 +28,9 @@ class AuthDataRepository @Inject constructor(
 
     override fun registerUser(user: User): Flowable<User> {
         return factory.retrieveRemoteDataStore().registerUser(userMapper.mapToEntity(user))
+            .flatMap {
+                factory.retrieveCacheDataStore().saveAuthData(it).toSingle { it }.toFlowable()
+            }
             .map {
                 userMapper.mapFromEntity(it)
             }

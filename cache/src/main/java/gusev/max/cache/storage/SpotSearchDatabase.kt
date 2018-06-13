@@ -4,8 +4,10 @@ import android.arch.persistence.room.Database
 import android.arch.persistence.room.Room
 import android.arch.persistence.room.RoomDatabase
 import android.content.Context
+import gusev.max.cache.dao.CachedActionDao
 import gusev.max.cache.dao.CachedEventDao
 import gusev.max.cache.dao.CachedUserDao
+import gusev.max.cache.model.CachedAction
 import gusev.max.cache.model.CachedEvent
 import gusev.max.cache.model.CachedUser
 import javax.inject.Inject
@@ -16,7 +18,8 @@ import javax.inject.Inject
 @Database(
         entities = [
             (CachedUser::class),
-            (CachedEvent::class)
+            (CachedEvent::class),
+            (CachedAction::class)
         ], version = 1
 )
 abstract class SpotSearchDatabase @Inject constructor() : RoomDatabase() {
@@ -24,6 +27,8 @@ abstract class SpotSearchDatabase @Inject constructor() : RoomDatabase() {
     abstract fun cachedUserDao(): CachedUserDao
 
     abstract fun cachedEventsDao(): CachedEventDao
+
+    abstract fun cachedActionsDao(): CachedActionDao
 
     private var INSTANCE: SpotSearchDatabase? = null
 
@@ -35,7 +40,7 @@ abstract class SpotSearchDatabase @Inject constructor() : RoomDatabase() {
                 if (INSTANCE == null) {
                     INSTANCE = Room.databaseBuilder(
                             context.applicationContext,
-                            SpotSearchDatabase::class.java, "debug_test1.db"
+                            SpotSearchDatabase::class.java, "debug.db"
                     )
                         .build()
                 }

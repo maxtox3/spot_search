@@ -4,9 +4,10 @@ import dagger.Binds
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 import gusev.max.domain.executor.PostExecutionThread
-import gusev.max.spotsearch.AuthActivity
-import gusev.max.spotsearch.MainActivity
-import gusev.max.spotsearch.UiThread
+import gusev.max.spotsearch.auth.AuthActivity
+import gusev.max.spotsearch.main.MainActivity
+import gusev.max.spotsearch.main.activities.ActionsListFragment
+import gusev.max.spotsearch.utils.UiThread
 
 /**
  * Module that provides all dependencies from the mobile-ui package/layer and injects all activities.
@@ -29,6 +30,9 @@ abstract class UiModule {
      */
     @ContributesAndroidInjector
     abstract fun contributeMainActivity(): MainActivity
+
+    @ContributesAndroidInjector
+    abstract fun contributeActionsListFragment(): ActionsListFragment
 
 
 }

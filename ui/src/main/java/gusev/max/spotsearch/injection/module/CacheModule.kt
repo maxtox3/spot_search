@@ -5,9 +5,11 @@ import android.arch.persistence.room.Room
 import dagger.Binds
 import dagger.Module
 import dagger.Provides
+import gusev.max.cache.ActionCacheImpl
 import gusev.max.cache.AuthCacheImpl
 import gusev.max.cache.UserCacheImpl
 import gusev.max.cache.storage.SpotSearchDatabase
+import gusev.max.data.source.action.ActionCache
 import gusev.max.data.source.auth.AuthCache
 import gusev.max.data.source.user.UserCache
 
@@ -29,7 +31,7 @@ abstract class CacheModule {
         fun provideSpotSearchDatabase(application: Application): SpotSearchDatabase {
             return Room.databaseBuilder(
                     application.applicationContext,
-                    SpotSearchDatabase::class.java, "debug1.db"
+                    SpotSearchDatabase::class.java, "debug3.db"
             ).build()
         }
     }
@@ -47,4 +49,7 @@ abstract class CacheModule {
     /**
      * Main
      */
+
+    @Binds
+    abstract fun bindActionCache(actionCache: ActionCacheImpl): ActionCache
 }

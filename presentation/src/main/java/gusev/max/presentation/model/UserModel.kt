@@ -11,4 +11,4 @@ data class UserModel(
     val avatar: String,
     val createdAt: String,
     val updatedAt: String
-) : BasePresentationViewModel
+) : BaseModel

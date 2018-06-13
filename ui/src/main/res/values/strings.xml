@@ -4,4 +4,8 @@
 
     <string name="login">Вход</string>
     <string name="register">Регистрация</string>
+    <string name="star">star</string>
+    <string name="general_error">Произошла ошибка</string>
+    <string name="error_empty">Здесь ничего нет =(</string>
+
 </resources>

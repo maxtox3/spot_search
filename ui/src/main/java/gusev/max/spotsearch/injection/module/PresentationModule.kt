@@ -7,6 +7,7 @@ import dagger.MapKey
 import dagger.Module
 import dagger.multibindings.IntoMap
 import gusev.max.presentation.auth.AuthViewModel
+import gusev.max.presentation.main.actions.ActionsViewModel
 import gusev.max.spotsearch.injection.ViewModelFactory
 import kotlin.reflect.KClass
 
@@ -38,6 +39,10 @@ abstract class PresentationModule {
      * Main
      */
 
+    @Binds
+    @IntoMap
+    @ViewModelKey(ActionsViewModel::class)
+    abstract fun bindActionsViewModel(viewModel: ActionsViewModel): ViewModel
 
 
     @Binds

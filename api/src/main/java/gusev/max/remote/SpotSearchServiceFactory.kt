@@ -1,6 +1,7 @@
 package gusev.max.remote
 
 import gusev.max.data.source.auth.AuthCache
+import gusev.max.remote.api.ActionApi
 import gusev.max.remote.api.AuthApi
 import gusev.max.remote.api.UserApi
 import okhttp3.Interceptor
@@ -24,6 +25,10 @@ object SpotSearchServiceFactory {
 
     fun makeUserService(isDebug: Boolean, baseUrl: String, cache: AuthCache): UserApi {
         return makeDefaultRetrofit(isDebug, baseUrl, cache).create(UserApi::class.java)
+    }
+
+    fun makeActionService(isDebug: Boolean, baseUrl: String, cache: AuthCache): ActionApi {
+        return makeDefaultRetrofit(isDebug, baseUrl, cache).create(ActionApi::class.java)
     }
 
     private fun makeDefaultRetrofit(

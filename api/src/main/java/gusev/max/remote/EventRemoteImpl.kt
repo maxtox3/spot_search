@@ -23,7 +23,6 @@ class EventRemoteImpl @Inject constructor(
 
     override fun getEntityById(id: Long): Flowable<EventEntity> {
         return service.getEventById(id)
-            //todo add errorfilter
             .map {
                 eventMapper.mapFromRemote(it.entity!!)
             }
@@ -36,11 +35,10 @@ class EventRemoteImpl @Inject constructor(
                 south = bounds.southWest.latitude,
                 west = bounds.northEast.longitude
         )
-            //todo add errorfilter
             .map {
-                it.entities!!.map {
+                it.entities?.map {
                     eventMapper.mapFromRemote(it)
-                }
+                } ?: arrayListOf()
             }
     }
 

@@ -3,12 +3,15 @@ package gusev.max.spotsearch.injection.module
 import dagger.Binds
 import dagger.Module
 import dagger.Provides
+import gusev.max.data.source.action.ActionRemote
 import gusev.max.data.source.auth.AuthCache
 import gusev.max.data.source.auth.AuthRemote
 import gusev.max.data.source.user.UserRemote
+import gusev.max.remote.ActionRemoteImpl
 import gusev.max.remote.AuthRemoteImpl
 import gusev.max.remote.SpotSearchServiceFactory
 import gusev.max.remote.UserRemoteImpl
+import gusev.max.remote.api.ActionApi
 import gusev.max.remote.api.AuthApi
 import gusev.max.remote.api.UserApi
 import gusev.max.spotsearch.BuildConfig
@@ -44,6 +47,16 @@ abstract class RemoteModule {
                     cache
             )
         }
+
+        @Provides
+        @JvmStatic
+        fun provideActionApi(cache: AuthCache): ActionApi {
+            return SpotSearchServiceFactory.makeActionService(
+                    BuildConfig.DEBUG,
+                    BuildConfig.BASE_URL,
+                    cache
+            )
+        }
     }
 
     /**
@@ -60,5 +73,6 @@ abstract class RemoteModule {
      * Main
      */
 
-
+    @Binds
+    abstract fun bindActionRemote(actionRemoteImpl: ActionRemoteImpl): ActionRemote
 }
