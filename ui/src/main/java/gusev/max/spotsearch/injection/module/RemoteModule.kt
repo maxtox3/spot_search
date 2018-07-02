@@ -6,14 +6,11 @@ import dagger.Provides
 import gusev.max.data.source.action.ActionRemote
 import gusev.max.data.source.auth.AuthCache
 import gusev.max.data.source.auth.AuthRemote
+import gusev.max.data.source.event.EventRemote
+import gusev.max.data.source.event.comment.CommentRemote
 import gusev.max.data.source.user.UserRemote
-import gusev.max.remote.ActionRemoteImpl
-import gusev.max.remote.AuthRemoteImpl
-import gusev.max.remote.SpotSearchServiceFactory
-import gusev.max.remote.UserRemoteImpl
-import gusev.max.remote.api.ActionApi
-import gusev.max.remote.api.AuthApi
-import gusev.max.remote.api.UserApi
+import gusev.max.remote.*
+import gusev.max.remote.api.*
 import gusev.max.spotsearch.BuildConfig
 
 /**
@@ -57,6 +54,26 @@ abstract class RemoteModule {
                     cache
             )
         }
+
+        @Provides
+        @JvmStatic
+        fun provideEventApi(cache: AuthCache): EventApi {
+            return SpotSearchServiceFactory.makeEventService(
+                    BuildConfig.DEBUG,
+                    BuildConfig.BASE_URL,
+                    cache
+            )
+        }
+
+        @Provides
+        @JvmStatic
+        fun provideCommentApi(cache: AuthCache): CommentApi {
+            return SpotSearchServiceFactory.makeCommentService(
+                    BuildConfig.DEBUG,
+                    BuildConfig.BASE_URL,
+                    cache
+            )
+        }
     }
 
     /**
@@ -75,4 +92,10 @@ abstract class RemoteModule {
 
     @Binds
     abstract fun bindActionRemote(actionRemoteImpl: ActionRemoteImpl): ActionRemote
+
+    @Binds
+    abstract fun bindEventRemote(eventRemoteImpl: EventRemoteImpl): EventRemote
+
+    @Binds
+    abstract fun bindCommentRemote(commentRemoteImpl: CommentRemoteImpl): CommentRemote
 }

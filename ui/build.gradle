@@ -100,10 +100,16 @@ dependencies {
     implementation mobileUiDependencies.toasty
     implementation mobileUiDependencies.stetho
     implementation mobileUiDependencies.googleMaps
+    implementation mobileUiDependencies.googleMapsUtils
+    implementation mobileUiDependencies.cicrleImage
 
     implementation 'com.afollestad.material-dialogs:core:0.9.6.0'
 
     provided mobileUiDependencies.mockito
+//test todo need to be moved to dependencies if ok
+    compile 'com.squareup.picasso:picasso:2.5.2'
+    compile 'com.nineoldandroids:library:2.4.0'
+    compile 'com.daimajia.slider:library:1.1.5@aar'
 
     compile presentationDependencies.archRuntime
     compile presentationDependencies.archExtensions

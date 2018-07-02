@@ -13,7 +13,14 @@ class EventRemoteDataStore @Inject constructor(
     private val remoteStore: EventRemote
 ) : BaseRemoteDataStore<EventEntity>(remoteStore), EventDataStore {
 
-    override fun getEntitiesByBounds(bounds: LatLngBoundsModel): Flowable<List<EventEntity>> {
-        return remoteStore.getEntitiesByBounds(bounds)
+    override fun getEventsByBounds(bounds: LatLngBoundsModel): Flowable<List<EventEntity>> {
+        return remoteStore.getEventsByBounds(bounds)
+    }
+
+    override fun getEventsByBoundsAndActionId(
+        bounds: LatLngBoundsModel,
+        actionId: Long
+    ): Flowable<List<EventEntity>> {
+        return remoteStore.getEventsByBoundsAndActionId(bounds, actionId)
     }
 }

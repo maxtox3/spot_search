@@ -5,7 +5,16 @@
     <string name="login">Вход</string>
     <string name="register">Регистрация</string>
     <string name="star">star</string>
+    <string name="name">Имя</string>
+    <string name="naming">Название</string>
+    <string name="description">Описание</string>
     <string name="general_error">Произошла ошибка</string>
     <string name="error_empty">Здесь ничего нет =(</string>
+    <string name="choose_type">Выберите тип</string>
+    <string name="create">Создать</string>
+    <string name="map">Карта</string>
+    <string name="top">Top</string>
+    <string name="favorites">Избранное</string>
+    <string name="profile">Профиль</string>
 
 </resources>

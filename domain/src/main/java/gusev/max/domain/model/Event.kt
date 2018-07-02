@@ -8,6 +8,7 @@ import gusev.max.domain.model.map.LatLngModel
 data class Event(
     val id: Long,
     val userId: Long,
+    val actionId: Long,
     val name: String,
     val description: String,
     val photoUrl: String,

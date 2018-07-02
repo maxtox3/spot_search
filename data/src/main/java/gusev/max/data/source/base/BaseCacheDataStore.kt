@@ -28,6 +28,10 @@ abstract class BaseCacheDataStore<E : BaseEntity>(
         }
     }
 
+    override fun saveEntity(entity: E): Completable {
+        return cache.saveEntity(entity)
+    }
+
     override fun clearEntities(): Completable {
         return cache.clearEntities()
     }

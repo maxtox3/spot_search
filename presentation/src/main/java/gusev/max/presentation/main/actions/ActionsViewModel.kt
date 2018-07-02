@@ -33,7 +33,7 @@ open class ActionsViewModel @Inject constructor(
                             ActionsViewState.BrowseActionsSuccess(
                                     result.actions?.map {
                                         mapper.mapToViewModel(it)
-                                    })
+                                    } ?: arrayListOf())
                         result.taskStatus == TaskStatus.IN_WORK -> ActionsViewState.InProgress
                         result.taskStatus == TaskStatus.FAILURE -> ActionsViewState.Failed
                         else -> ActionsViewState.Idle

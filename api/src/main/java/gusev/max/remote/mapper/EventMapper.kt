@@ -11,16 +11,28 @@ class EventMapper @Inject constructor() : Mapper<EventModel, EventEntity> {
 
     override fun mapFromRemote(type: EventModel): EventEntity {
         return EventEntity(
-                id = type.id,
-                userId = type.userId,
+                id = type.id!!,
+                userId = type.userId!!,
+                actionId = type.actionId,
                 name = type.name,
                 description = type.description,
                 photoUrl = type.photoUrl ?: "",
                 latitude = type.lat,
                 longitude = type.lng,
-                likesCount = type.likesCount,
-                dislikesCount = type.dislikesCount
+                likesCount = type.likesCount ?: 0,
+                dislikesCount = type.dislikesCount ?: 0
         )
     }
+
+    fun mapToSaveModel(type: EventEntity): EventModel {
+        return EventModel(
+                actionId = type.actionId,
+                name = type.name,
+                description = type.description,
+                lat = type.latitude,
+                lng = type.longitude
+        )
+    }
+
 
 }

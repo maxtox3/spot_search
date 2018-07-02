@@ -1,18 +1,17 @@
 package gusev.max.spotsearch.base.widgets
 
 import android.support.v7.widget.RecyclerView
-import gusev.max.presentation.model.BaseModel
-import io.reactivex.Observable
+import gusev.max.spotsearch.model.BaseUIModel
 import io.reactivex.subjects.PublishSubject
 
 /**
  * Created by v on 13/06/2018.
  */
-abstract class BaseAdapter<M : BaseModel, VIEW_HOLDER : BaseViewHolder<M>> :
+abstract class BaseAdapter<M : BaseUIModel, VIEW_HOLDER : BaseViewHolder<M>> :
         RecyclerView.Adapter<VIEW_HOLDER>(),
         BaseViewHolder.ModelClickListener<M> {
 
-    protected val mainModelClickObservable: PublishSubject<M> = PublishSubject.create()
+    internal val mainModelClickObservable: PublishSubject<M> = PublishSubject.create()
     protected var modelList: MutableList<M> = mutableListOf()
 
     override fun getItemCount(): Int {
@@ -30,9 +29,5 @@ abstract class BaseAdapter<M : BaseModel, VIEW_HOLDER : BaseViewHolder<M>> :
 
     override fun onMainModelClick(model: M, position: Int) {
         mainModelClickObservable.onNext(model)
-    }
-
-    fun getMainModelClickObservable(): Observable<M> {
-        return mainModelClickObservable
     }
 }

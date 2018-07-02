@@ -23,7 +23,7 @@ open class RegisterUser @Inject constructor(
     override fun buildUseCaseObservable(params: User?): Completable {
         return authRepository.registerUser(params!!)
             .flatMapCompletable {
-                userRepository.cacheModels(Collections.singletonList(it))
+                userRepository.saveModels(Collections.singletonList(it))
             }
     }
 

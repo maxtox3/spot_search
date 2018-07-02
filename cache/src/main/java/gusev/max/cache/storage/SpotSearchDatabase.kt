@@ -5,9 +5,11 @@ import android.arch.persistence.room.Room
 import android.arch.persistence.room.RoomDatabase
 import android.content.Context
 import gusev.max.cache.dao.CachedActionDao
+import gusev.max.cache.dao.CachedCommentDao
 import gusev.max.cache.dao.CachedEventDao
 import gusev.max.cache.dao.CachedUserDao
 import gusev.max.cache.model.CachedAction
+import gusev.max.cache.model.CachedComment
 import gusev.max.cache.model.CachedEvent
 import gusev.max.cache.model.CachedUser
 import javax.inject.Inject
@@ -19,7 +21,8 @@ import javax.inject.Inject
         entities = [
             (CachedUser::class),
             (CachedEvent::class),
-            (CachedAction::class)
+            (CachedAction::class),
+            (CachedComment::class)
         ], version = 1
 )
 abstract class SpotSearchDatabase @Inject constructor() : RoomDatabase() {
@@ -29,6 +32,8 @@ abstract class SpotSearchDatabase @Inject constructor() : RoomDatabase() {
     abstract fun cachedEventsDao(): CachedEventDao
 
     abstract fun cachedActionsDao(): CachedActionDao
+
+    abstract fun cachedCommentsDao(): CachedCommentDao
 
     private var INSTANCE: SpotSearchDatabase? = null
 

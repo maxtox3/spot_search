@@ -22,10 +22,14 @@ abstract class BaseRemoteDataStore<E : BaseEntity>(private val remote: BaseRemot
     }
 
     override fun saveEntities(entities: List<E>): Completable {
-        throw UnsupportedOperationException()
+       return remote.saveEntities(entities)
+    }
+
+    override fun saveEntity(entity: E): Completable {
+        return remote.saveEntity(entity)
     }
 
     override fun clearEntities(): Completable {
-        throw UnsupportedOperationException()
+        return remote.clearEntities()
     }
 }

@@ -20,6 +20,7 @@ PreferencesHelper @Inject constructor(context: Context) {
 
         private const val LAST_EVENTS_CACHE_TIME = "last_events_cache"
         private const val LAST_ACTIONS_CACHE_TIME = "last_actions_cache"
+        private const val LAST_COMMENTS_CACHE_TIME = "last_comments_cache"
 
     }
 
@@ -44,6 +45,10 @@ PreferencesHelper @Inject constructor(context: Context) {
     var lastActionsCacheTime: Long
         get() = getTime(LAST_ACTIONS_CACHE_TIME)
         set(value) = setTime(LAST_ACTIONS_CACHE_TIME, value)
+
+    var lastCommentsCacheTime: Long
+        get() = getTime(LAST_COMMENTS_CACHE_TIME)
+        set(value) = setTime(LAST_COMMENTS_CACHE_TIME, value)
 
     private fun getTime(key: String): Long {
         return prefs.getLong(key, 0L)

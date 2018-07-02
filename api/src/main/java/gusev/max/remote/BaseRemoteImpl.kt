@@ -5,6 +5,7 @@ import gusev.max.data.source.base.BaseRemote
 import gusev.max.remote.mapper.Mapper
 import gusev.max.remote.model.BaseRemoteModel
 import io.reactivex.Completable
+import io.reactivex.Flowable
 import io.reactivex.Single
 
 /**
@@ -14,16 +15,6 @@ abstract class BaseRemoteImpl<E : BaseEntity, M : BaseRemoteModel>(
     val mapper: Mapper<M, E>
 ) : BaseRemote<E> {
 
-//    val authErrorTransformer: FlowableTransformer<P, P> = FlowableTransformer {
-//        it.switchMap {
-//            if (it.error?.errorCode != null) {
-//                Flowable.error(AuthError())
-//            } else {
-//                Flowable.just(it)
-//            }
-//        }
-//    }
-
     override fun isCached(): Single<Boolean> {
         throw UnsupportedOperationException()
     }
@@ -32,7 +23,19 @@ abstract class BaseRemoteImpl<E : BaseEntity, M : BaseRemoteModel>(
         throw UnsupportedOperationException()
     }
 
+    override fun saveEntity(entity: E): Completable {
+        throw UnsupportedOperationException()
+    }
+
     override fun clearEntities(): Completable {
+        throw UnsupportedOperationException()
+    }
+
+    override fun getEntities(): Flowable<List<E>> {
+        throw UnsupportedOperationException()
+    }
+
+    override fun getEntityById(id: Long): Flowable<E> {
         throw UnsupportedOperationException()
     }
 }

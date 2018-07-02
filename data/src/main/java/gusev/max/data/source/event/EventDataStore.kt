@@ -10,6 +10,11 @@ import io.reactivex.Flowable
  */
 interface EventDataStore : BaseDataStore<EventEntity> {
 
-    fun getEntitiesByBounds(bounds: LatLngBoundsModel): Flowable<List<EventEntity>>
+    fun getEventsByBounds(bounds: LatLngBoundsModel): Flowable<List<EventEntity>>
+
+    fun getEventsByBoundsAndActionId(
+        bounds: LatLngBoundsModel,
+        actionId: Long
+    ): Flowable<List<EventEntity>>
 
 }

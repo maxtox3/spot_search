@@ -13,6 +13,7 @@ data class CachedEvent(
     @PrimaryKey
     val id: Long,
     val userId: Long,
+    val actionId: Long,
     val name: String,
     val description: String,
     val photoUrl: String,

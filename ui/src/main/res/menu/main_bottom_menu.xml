@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+      xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/map_button"
+        android:enabled="true"
+        android:icon="@drawable/map"
+        android:title="@string/map"
+        app:showAsAction="ifRoom"/>
+
+    <item
+        android:id="@+id/top_button"
+        android:enabled="true"
+        android:title="@string/top"
+        android:icon="@drawable/top"
+        app:showAsAction="ifRoom"/>
+
+    <item
+        android:id="@+id/favorites_button"
+        android:enabled="true"
+        android:title="@string/favorites"
+        android:icon="@drawable/favorite"
+        app:showAsAction="ifRoom"/>
+
+    <item
+        android:id="@+id/profile_button"
+        android:enabled="true"
+        android:title="@string/profile"
+        android:icon="@drawable/profile"
+        app:showAsAction="ifRoom"/>
+
+
+</menu>

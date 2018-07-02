@@ -6,7 +6,10 @@ import dagger.android.ContributesAndroidInjector
 import gusev.max.domain.executor.PostExecutionThread
 import gusev.max.spotsearch.auth.AuthActivity
 import gusev.max.spotsearch.main.MainActivity
-import gusev.max.spotsearch.main.activities.ActionsListFragment
+import gusev.max.spotsearch.main.actions.ActionsListFragment
+import gusev.max.spotsearch.main.event.CreateEventDialogFragment
+import gusev.max.spotsearch.main.event.EventFullInfoFragment
+import gusev.max.spotsearch.main.event.MapFragment
 import gusev.max.spotsearch.utils.UiThread
 
 /**
@@ -33,6 +36,15 @@ abstract class UiModule {
 
     @ContributesAndroidInjector
     abstract fun contributeActionsListFragment(): ActionsListFragment
+
+    @ContributesAndroidInjector
+    abstract fun contributeMapFragment(): MapFragment
+
+    @ContributesAndroidInjector
+    abstract fun contributeCreateEventDialog(): CreateEventDialogFragment
+
+    @ContributesAndroidInjector
+    abstract fun contributeEventFullInfoFragment(): EventFullInfoFragment
 
 
 }

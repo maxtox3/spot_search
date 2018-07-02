@@ -12,6 +12,7 @@ class EventMapper @Inject constructor() : BaseCacheMapper<CachedEvent, EventEnti
         return EventEntity(
                 id = type.id,
                 userId = type.userId,
+                actionId = type.actionId,
                 name = type.name,
                 description = type.description,
                 photoUrl = type.photoUrl,
@@ -26,6 +27,7 @@ class EventMapper @Inject constructor() : BaseCacheMapper<CachedEvent, EventEnti
         return CachedEvent(
                 id = type.id,
                 userId = type.userId,
+                actionId = type.actionId,
                 name = type.name,
                 description = type.description,
                 photoUrl = type.photoUrl,

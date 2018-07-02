@@ -26,29 +26,33 @@ abstract class BaseDataRepository<
     }
 
     override fun saveModels(models: List<M>): Completable {
-
-        //todo save to remote not to cache, don't forget
         return factory.retrieveCacheDataStore().saveEntities(
                 models.map { mapper.mapToEntity(it) }
         )
     }
 
-    override fun cacheModels(models: List<M>): Completable {
-        return factory.retrieveCacheDataStore().saveEntities(
-                models.map { mapper.mapToEntity(it) }
-        )
+    override fun saveModel(model: M): Completable {
+        return factory.retrieveRemoteDataStore().saveEntity(mapper.mapToEntity(model))
     }
 
     override fun getModels(): Flowable<List<M>> {
+        var isCached = false
         return factory.retrieveCacheDataStore().isCached()
-            .flatMapPublisher { it -> factory.retrieveDataStore(it).getEntities() }
+            .flatMapPublisher { it ->
+                isCached = it
+                factory.retrieveDataStore(it).getEntities()
+            }
             .flatMap {
                 Flowable.just(it.map {
                     mapper.mapFromEntity(it)
                 })
             }
             .flatMap {
-                cacheModels(it).toSingle { it }.toFlowable()
+                if (!isCached) {
+                    saveModels(it).toSingle { it }.toFlowable()
+                } else {
+                    Flowable.just(it)
+                }
             }
     }
 

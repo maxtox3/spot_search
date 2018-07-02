@@ -13,7 +13,14 @@ class EventCacheDataStore @Inject constructor(
     private val cacheStore: EventCache
 ) : BaseCacheDataStore<EventEntity>(cacheStore), EventDataStore {
 
-    override fun getEntitiesByBounds(bounds: LatLngBoundsModel): Flowable<List<EventEntity>> {
-        return cacheStore.getEntitiesByBounds(bounds)
+    override fun getEventsByBounds(bounds: LatLngBoundsModel): Flowable<List<EventEntity>> {
+        return cacheStore.getEventsByBounds(bounds)
+    }
+
+    override fun getEventsByBoundsAndActionId(
+        bounds: LatLngBoundsModel,
+        actionId: Long
+    ): Flowable<List<EventEntity>> {
+        return cacheStore.getEventsByBoundsAndActionId(bounds, actionId)
     }
 }

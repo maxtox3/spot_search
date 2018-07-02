@@ -23,15 +23,25 @@ class EventDataRepository @Inject constructor(
 ), EventsRepository {
 
     override fun getModelsByBounds(bounds: LatLngBoundsModel): Flowable<List<Event>> {
-        return factory.retrieveCacheDataStore().isCached()
-            .flatMapPublisher { it -> factory.retrieveDataStore(it).getEntitiesByBounds(bounds) }
+        return factory.retrieveRemoteDataStore().getEventsByBounds(bounds)
             .flatMap {
                 Flowable.just(it.map {
                     mapper.mapFromEntity(it)
                 })
             }
-            .flatMap {
-                saveModels(it).toSingle { it }.toFlowable()
-            }
     }
+
+    override fun getModelsByBoundsAndActionId(
+        bounds: LatLngBoundsModel,
+        actionId: Long
+    ): Flowable<List<Event>> {
+        return factory.retrieveRemoteDataStore().getEventsByBoundsAndActionId(bounds, actionId)
+            .flatMap {
+                Flowable.just(it.map {
+                    mapper.mapFromEntity(it)
+                })
+            }
+
+    }
+
 }

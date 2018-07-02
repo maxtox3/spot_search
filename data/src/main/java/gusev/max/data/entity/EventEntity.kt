@@ -5,6 +5,7 @@ package gusev.max.data.entity
  */
 data class EventEntity(
     val id: Long,
+    val actionId: Long,
     val userId: Long,
     val name: String,
     val description: String,

@@ -1,6 +1,6 @@
 package gusev.max.presentation.main.actions
 
-import gusev.max.domain.interactor.main.GetActions
+import gusev.max.domain.interactor.main.action.GetActions
 import io.reactivex.ObservableTransformer
 import javax.inject.Inject
 
@@ -14,7 +14,9 @@ class BrowseActionsProcessor @Inject constructor(
         it.switchMap {
             getActions.execute()
                 .map {
-                    ActionsResult.BrowseActions.success(it)
+                    ActionsResult.BrowseActions.success(
+                            it
+                    )
                 }
                 .onErrorReturn {
                     ActionsResult.BrowseActions.failure()

@@ -1,6 +1,6 @@
 package gusev.max.presentation.main.map
 
-import gusev.max.domain.interactor.main.GetEvents
+import gusev.max.domain.interactor.main.event.GetEvents
 import io.reactivex.ObservableTransformer
 import javax.inject.Inject
 
@@ -8,27 +8,29 @@ import javax.inject.Inject
  * Created by v on 09/06/2018.
  */
 class BrowseEventsProcessor @Inject constructor(
-    private val getTasks: GetEvents
+    private val getEvents: GetEvents
 ) {
-    private val listProcessor: ObservableTransformer<BrowseEventsAction.BrowseEvents, BrowseEventsResult> = ObservableTransformer {
+    private val listProcessor: ObservableTransformer<MapAction.BrowseEvents, MapResult> = ObservableTransformer {
         it.switchMap {
-            getTasks.execute(it.bounds)
+            getEvents.execute(it.bounds, it.actionId)
                 .map {
-                    BrowseEventsResult.BrowseEvents.success(it)
+                    MapResult.BrowseEvents.success(
+                            it
+                    )
                 }
                 .onErrorReturn {
-                    BrowseEventsResult.BrowseEvents.failure()
+                    MapResult.BrowseEvents.failure()
                 }
                 .toObservable()
-                .startWith(BrowseEventsResult.BrowseEvents.inFlight())
+                .startWith(MapResult.BrowseEvents.inFlight())
         }
     }
-    var actionProcessor: ObservableTransformer<BrowseEventsAction, BrowseEventsResult>
+    var actionProcessor: ObservableTransformer<MapAction, MapResult>
 
     init {
         this.actionProcessor = ObservableTransformer {
             it.publish {
-                it.ofType(BrowseEventsAction.BrowseEvents::class.java)
+                it.ofType(MapAction.BrowseEvents::class.java)
                     .compose(listProcessor)
             }
         }

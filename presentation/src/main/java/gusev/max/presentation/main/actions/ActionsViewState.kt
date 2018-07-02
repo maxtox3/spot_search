@@ -15,7 +15,7 @@ sealed class ActionsViewState(
 
     object Failed : ActionsViewState(false, null)
 
-    class BrowseActionsSuccess(actions: List<ActionModel>?) : ActionsViewState(false, actions)
+    class BrowseActionsSuccess(actions: List<ActionModel>) : ActionsViewState(false, actions)
 
     object Idle : ActionsViewState(false, null)
 }

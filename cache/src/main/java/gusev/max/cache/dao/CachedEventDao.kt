@@ -27,6 +27,13 @@ abstract class CachedEventDao : BaseDao<CachedEvent> {
                 " longitude <= :eastLongitude AND" +
                 " longitude >= :westLongitude"
 
+        const val QUERY_EVENT_BY_LAT_LNG_AND_ACTION_ID = "SELECT * FROM $TABLE_NAME WHERE" +
+                " latitude <= :northLatitude AND" +
+                " latitude >= :southLatitude AND" +
+                " longitude <= :eastLongitude AND" +
+                " longitude >= :westLongitude AND" +
+                " actionId = :actionId"
+
     }
 
     @Query(QUERY_EVENTS)
@@ -41,6 +48,15 @@ abstract class CachedEventDao : BaseDao<CachedEvent> {
         southLatitude: Double,
         westLongitude: Double,
         eastLongitude: Double
+    ): List<CachedEvent>
+
+    @Query(QUERY_EVENT_BY_LAT_LNG_AND_ACTION_ID)
+    abstract fun getEventsByLatLngBoundsAndActionId(
+        northLatitude: Double,
+        southLatitude: Double,
+        westLongitude: Double,
+        eastLongitude: Double,
+        actionId: Long
     ): List<CachedEvent>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)

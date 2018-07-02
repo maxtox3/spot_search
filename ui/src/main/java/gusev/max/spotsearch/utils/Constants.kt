@@ -7,6 +7,9 @@ object Constants {
 
     const val MAP_FRAGMENT = "MapFragment"
     const val ACTIONS_FRAGMENT = "ActionsListFragment"
+    const val FULL_INO_FRAGMENT = "EventFullInfoFragment"
+
+    const val MODEL = "model"
 
     const val FOOD = "Food"
     const val CHILL_OUT = "Chill out"

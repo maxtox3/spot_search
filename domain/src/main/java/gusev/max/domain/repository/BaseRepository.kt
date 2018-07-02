@@ -13,7 +13,7 @@ interface BaseRepository<MODEL : BaseDomainModel> {
 
     fun saveModels(models: List<MODEL>): Completable
 
-    fun cacheModels(models: List<MODEL>): Completable
+    fun saveModel(model: MODEL): Completable
 
     fun getModels(): Flowable<List<MODEL>>
 

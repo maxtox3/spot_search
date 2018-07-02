@@ -16,5 +16,7 @@ interface BaseDataStore<E : BaseEntity> {
 
     fun saveEntities(entities: List<E>): Completable
 
+    fun saveEntity(entity: E): Completable
+
     fun clearEntities(): Completable
 }

@@ -46,6 +46,13 @@ abstract class BaseCacheImpl<ENTITY : BaseEntity, CACHED_ENTITY : BaseCachedMode
         }
     }
 
+    override fun saveEntity(entity: ENTITY): Completable {
+        return Completable.defer {
+            getDao().saveEntity(entityMapper.mapToCached(entity))
+            Completable.complete()
+        }
+    }
+
     override fun clearEntities(): Completable {
         return Completable.defer {
             getDao().clearEntities()

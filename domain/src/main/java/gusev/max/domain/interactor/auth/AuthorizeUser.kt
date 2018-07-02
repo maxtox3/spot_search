@@ -23,7 +23,7 @@ class AuthorizeUser @Inject constructor(
     override fun buildUseCaseObservable(params: User?): Completable {
         return authRepository.authorizeUser(params!!)
             .flatMapCompletable {
-                userRepository.cacheModels(Collections.singletonList(it))
+                userRepository.saveModels(Collections.singletonList(it))
             }
     }
 

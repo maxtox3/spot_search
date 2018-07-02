@@ -10,4 +10,6 @@ import io.reactivex.Flowable
 interface EventsRepository : BaseRepository<Event> {
 
     fun getModelsByBounds(bounds: LatLngBoundsModel): Flowable<List<Event>>
+
+    fun getModelsByBoundsAndActionId(bounds: LatLngBoundsModel, actionId: Long): Flowable<List<Event>>
 }

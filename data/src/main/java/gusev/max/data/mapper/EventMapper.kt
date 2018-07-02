@@ -14,6 +14,7 @@ class EventMapper @Inject constructor() : EntityMapper<EventEntity, Event> {
         return EventEntity(
                 id = type.id,
                 userId = type.userId,
+                actionId = type.actionId,
                 name = type.name,
                 description = type.description,
                 photoUrl = type.photoUrl,
@@ -28,6 +29,7 @@ class EventMapper @Inject constructor() : EntityMapper<EventEntity, Event> {
         return Event(
                 id = type.id,
                 userId = type.userId,
+                actionId = type.actionId,
                 name = type.name,
                 description = type.description,
                 photoUrl = type.photoUrl,

@@ -20,7 +20,7 @@ class EventCacheImpl @Inject constructor(
     mapper: EventMapper
 ) : BaseCacheImpl<EventEntity, CachedEvent>(mapper), EventCache {
 
-    override fun getEntitiesByBounds(bounds: LatLngBoundsModel): Flowable<List<EventEntity>> {
+    override fun getEventsByBounds(bounds: LatLngBoundsModel): Flowable<List<EventEntity>> {
         return Flowable.defer {
             Flowable.just(
                     database.cachedEventsDao().getEventsByLatLngBounds(
@@ -28,6 +28,27 @@ class EventCacheImpl @Inject constructor(
                             southLatitude = bounds.southWest.latitude,
                             westLongitude = bounds.southWest.longitude,
                             eastLongitude = bounds.northEast.longitude
+                    )
+            ).map {
+                it.map {
+                    entityMapper.mapFromCached(it)
+                }
+            }
+        }
+    }
+
+    override fun getEventsByBoundsAndActionId(
+        bounds: LatLngBoundsModel,
+        actionId: Long
+    ): Flowable<List<EventEntity>> {
+        return Flowable.defer {
+            Flowable.just(
+                    database.cachedEventsDao().getEventsByLatLngBoundsAndActionId(
+                            northLatitude = bounds.northEast.latitude,
+                            southLatitude = bounds.southWest.latitude,
+                            westLongitude = bounds.southWest.longitude,
+                            eastLongitude = bounds.northEast.longitude,
+                            actionId = actionId
                     )
             ).map {
                 it.map {
